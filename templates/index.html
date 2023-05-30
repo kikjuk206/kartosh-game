@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Рейтинг</title>
+</head>
+<body>
+        <h1>Добро пожаловать на главную страницу!</h1>
+    <button onclick="location.href='/register'">Регистрация</button>
+    <button onclick="location.href='/success'">Вход</button>
+
+    <h1>Рейтинг</h1>
+    <ul>
+        <h3>Имя  -  Логин  -  Очки</h3>
+        {% for user in users %}
+        <li>{{ user[0] }} - {{ user[1] }} - {{ user[2] }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+
+
+    <!-- <h2>Новый чел в рейтинге</h2>
+    <form method="post" action="/">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="score">Счет:</label>
+        <input type="number" id="score" name="score" required><br>
+
+        <input type="submit" value="Add User">
+    </form> -->
+</body>
+</html>
+
