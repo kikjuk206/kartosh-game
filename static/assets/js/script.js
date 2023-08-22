@@ -109,17 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
         
-        // var data = canvas.toBlob((data) => {
-        //     console.log(data);
-        //     console.log(typeof(data));
-        //     a = new FormData();
-        //     a.append("file", data, "image/png")
-        //     fetch('http://127.0.0.1:5000/cam', {
-        //         method: 'post',
-        //         mode: 'no-cors',
-        //         body: a
-        //     });
-        // });
+
 
 
 

@@ -4,53 +4,90 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="style.css"> -->
-
     <style>
-      .container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-} 
-
-form{
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-
-body{
-    background-image: url(static/1026.jpg);
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('static/page.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #2581c6;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mx-auto">
-                <h4 class="text-center">Регистрация пользователя</h4>
-                <form method="POST" action="/register" class="px-4 py-3 justify-content-center border border-primary border-3 rounded">
-                    <div class="form-group">
-
-                      <label for="name">Имя</label>
-                      <input class="form-control" name ='name' id="name" placeholder="Имя" required>
-
-                      <label for="name">Логин</label>
-                      <input class="form-control" name="login" id="login" placeholder="Логин" required>
-
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Регистрация пользователя</h4>
                     </div>
-
-                    <div class="form-group">
-
+                    <div class="card-body">
+                        <form method="POST" action="/register">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Имя</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Имя" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login" class="form-label">Логин</label>
+                                <input type="text" class="form-control" name="login" id="login" placeholder="Логин" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-                  </form>
+                </div>
             </div>
         </div>
     </div>
-    
 </body>
 </html>

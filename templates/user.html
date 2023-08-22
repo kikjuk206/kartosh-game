@@ -20,12 +20,52 @@
             padding: 0;
         }
 
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            border-radius: 50%;
+            padding: 3px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .badge-icon {
+            font-size: 16px;
+            margin-left: 5px;
+        }
         .container {
             margin: 0 auto;
             max-width: 800px;
             padding: 20px;
+            position: relative; /* Добавлено для позиционирования кнопки */
         }
 
+        .task-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50; /* Цвет кнопки Задания */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .text {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
         h1 {
             color: #337ab7;
         }
@@ -47,7 +87,12 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
+        <a href="/tasks" class="task-button"> Задания
+            <span class="badge">{{ num_tasks }}</span>
+            <i class="material-icons badge-icon">notifications</i>
+          </a>
         <ul>
             <li>Логин: {{ user_data['login'] }}</li>
         </ul>
@@ -86,7 +131,22 @@
 
     </div>
 
+    <div class="text">
+        <h1>Добро пожаловать в игру "Веселая картошка"!</h1>
+        <p>
+            Тебе предстоит стать выдающимся фермером! Но помни, что есть конкуренты, которые могут опередить тебя по очкам!
+        </p>
+        <p>
+            Чтобы зарабатывать очки, сканируй QR-код под каждой картошкой и получай +1 очко. Также, сканируя QR-код под картошкой, ты получишь возможность пройти испытание умного фермера. Пройдя испытание, ты можешь получить +3 очка к своему рейтингу, но помни, что у тебя только одна попытка.
+        </p>
+        <p>
+            Когда в правом верхнем углу над кнопкой "Задания" появится число, это будет количество тестов, которые ты можешь пройти.
+        </p>
+        <p>
+            Удачи, юный фермер! Мы уверены, что ты сможешь победить всех конкурентов!
+        </p>
 
+    </div>
 
     <script src="/static/assets/js/script.js">
     </script>

@@ -1,0 +1,103 @@
+@app.route('/math', methods=['GET', 'POST'])
+def math():
+    global math_tasks
+    login = session.get('login', None)
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT uc FROM users WHERE login = ?", (login,))
+    num_tasks = cursor.fetchone()
+    num_tasks = list(num_tasks)
+    num_tasks = num_tasks[0]
+    random_task = random.choice(math_tasks)
+    # index_random_task = math_tasks.index(random_task)
+    sp_value = random_task['sp']
+    print(sp_value, "Должно прийти очков")
+    if num_tasks <= 0:
+        print('OK')
+        return render_template('bz_tasks.html', current_user=login)
+    elif num_tasks > 0:
+        print(num_tasks, "чилос uc")
+        task = random_task['task']
+        if request.method == 'POST':
+            user_answer = request.form['answer'].strip().lower()
+            
+            for task in math_tasks:
+
+                    if user_answer == task['answer']:
+        #Записываем балл пользователю если он нашел картошку
+                            conn = sqlite3.connect('database.db')
+                            cursor = conn.cursor()
+                            cursor.execute("UPDATE users SET score = score + ? WHERE login = ?", (sp_value, login))
+                            cursor.execute("UPDATE users SET uc = uc - ? WHERE login = ?", (1, login))
+                            conn.commit()
+                            conn.close()
+                            break
+                    
+        return render_template('tasks.html', math_tasks=task, active_tab='math', current_user=login)
+
+@app.route('/grammar', methods=['GET', 'POST'])
+def grammar():
+    global grammar_tasks
+    login = session.get('login', None)
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT uc FROM users WHERE login = ?", (login,))
+    num_tasks = cursor.fetchone()
+    num_tasks = list(num_tasks)
+    num_tasks = num_tasks[0]
+    if num_tasks <= 0:
+        print('OK')
+        return render_template('bz_tasks.html', current_user=login)
+    elif num_tasks > 0:
+        random_task = random.choice(grammar_tasks)
+        index_random_task = grammar_tasks.index(random_task)
+        sp_value = random_task['sp']
+        task = random_task['task']
+        if request.method == 'POST':
+            user_answer = request.form['answer'].strip().lower()
+            for task in grammar_tasks:
+                if user_answer == task['answer']:
+    #Записываем балл пользователю если он нашел картошку
+                        conn = sqlite3.connect('database.db')
+                        cursor = conn.cursor()
+                        cursor.execute("UPDATE users SET score = score + ? WHERE login = ?", (sp_value, login))
+                        cursor.execute("UPDATE users SET uc = uc - ? WHERE login = ?", (1, login))
+                        conn.commit()
+                        conn.close()
+                        break
+
+        return render_template('tasks.html', grammar_tasks=task, active_tab='grammar', current_user=login)
+
+@app.route('/riddles', methods=['GET', 'POST'])
+def riddles():
+    global riddle_tasks
+    login = session.get('login', None)
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT uc FROM users WHERE login = ?", (login,))
+    num_tasks = cursor.fetchone()
+    num_tasks = list(num_tasks)
+    num_tasks = num_tasks[0]
+    if num_tasks <= 0:
+        print('OK')
+        return render_template('bz_tasks.html', current_user=login)
+    elif num_tasks > 0:
+
+        random_task = random.choice(riddle_tasks)
+        index_random_task = riddle_tasks.index(random_task)
+        sp_value = random_task['sp']
+        task = random_task['task']
+        if request.method == 'POST':
+            user_answer = request.form['answer'].strip().lower()
+            for task in riddle_tasks:
+                if user_answer == task['answer']:
+    #Записываем балл пользователю если он нашел картошку
+                        conn = sqlite3.connect('database.db')
+                        cursor = conn.cursor()
+                        cursor.execute("UPDATE users SET score = score + ? WHERE login = ?", (sp_value, login))
+                        cursor.execute("UPDATE users SET uc = uc - ? WHERE login = ?", (1, login))
+                        conn.commit()
+                        conn.close()
+                        break
+
+        return render_template('tasks.html', riddle_tasks=task, active_tab='riddles', current_user=login)

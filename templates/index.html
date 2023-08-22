@@ -2,34 +2,110 @@
 <html>
 <head>
     <title>Рейтинг</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('static/page.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+        .button-register {
+            background-color: #3498db;
+            color: white;
+        }
+        .button-login {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        .rating {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
+    <div class="header">
         <h1>Добро пожаловать на главную страницу!</h1>
-    <button onclick="location.href='/register'">Регистрация</button>
-    <button onclick="location.href='/success'">Вход</button>
+    </div>
+    <div class="buttons">
+        <button class="button button-register" onclick="location.href='/register'">Регистрация</button>
+        <button class="button button-login" onclick="location.href='/success'">Вход</button>
+    </div>
 
-    <h1>Рейтинг</h1>
-    <ul>
-        <h3>Имя  -  Логин  -  Очки</h3>
-        {% for user in users %}
-        <li>{{ user[0] }} - {{ user[1] }} - {{ user[2] }}</li>
-        {% endfor %}
-    </ul>
-
-
-
-
-
-    <!-- <h2>Новый чел в рейтинге</h2>
-    <form method="post" action="/">
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="score">Счет:</label>
-        <input type="number" id="score" name="score" required><br>
-
-        <input type="submit" value="Add User">
-    </form> -->
+    <div class="rating">
+        <h1>Рейтинг</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Логин</th>
+                    <th>Очки</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
+
+
+
+
+
+
 

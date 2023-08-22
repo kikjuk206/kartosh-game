@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Задания</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #4CAF50;
+            padding: 10px 0;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #45a049;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            background-color: #3e8540;
+        }
+
+        .task {
+            background-color: #FFFFFF;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+        }
+
+        .task h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+
+        .task form {
+            margin-top: 10px;
+        }
+
+        .task p {
+            margin-bottom: 5px;
+        }
+
+        .task input[type="text"] {
+            padding: 5px;
+            width: 100%;
+        }
+
+        .task button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .task button:hover {
+            background-color: #45a049;
+        }
+
+        .score {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .return-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .return-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Выберите задание</h1>
+        </div>
+        <div class="navbar">
+            <a href="/grammar" class="{{ 'active' if active_tab == 'grammar' else '' }}">Грамматика</a>
+            <a href="/math" class="{{ 'active' if active_tab == 'math' else '' }}">Математика</a>
+            <a href="/riddles" class="{{ 'active' if active_tab == 'riddles' else '' }}">Загадки</a>
+        </div>
+        {% if active_tab == 'math' %}
+            <div id="math" class="tab-content active">
+                <div class="task">
+                    <h2>Математика</h2>
+                    <form method="post" action="/math">
+                        <p>{{ math_task }}</p>
+                        <input type="hidden" name="category" value="math">
+                        <input type="text" name="answer" placeholder="Ваш ответ">
+                        <button type="submit">Ответить</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        {% if active_tab == 'grammar' %}
+            <div id="grammar" class="tab-content active">
+                <div class="task">
+                    <h2>Грамматика</h2>
+                    <form method="post" action="/grammar">
+                        <p>{{ grammar_task }}</p>
+                        <input type="hidden" name="category" value="grammar">
+                        <input type="text" name="answer" placeholder="Ваш ответ">
+                        <button type="submit">Ответить</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        {% if active_tab == 'riddles' %}
+            <div id="riddles" class="tab-content active">
+                <div class="task">
+                    <h2>Загадки</h2>
+                    <form method="post" action="/riddles">
+                        <p>{{ riddle_task }}</p>
+                        <input type="hidden" name="category" value="riddles">
+                        <input type="text" name="answer" placeholder="Ваш ответ">
+                        <button type="submit">Ответить</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <p><a href="{{ url_for('profile', login=current_user) }}", class="return-button">Вернуться в личный кабинет</a></p>
+    </div>
+</body>
+</html>
